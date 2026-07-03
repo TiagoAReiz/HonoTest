@@ -13,4 +13,11 @@ export class productService implements IProductService {
         const product = ProductMap.toEntity(data)
         return this.repo.save(product)
     }
+    update(id: string, data: ProductRequest): Promise<Product> {
+        const product = ProductMap.toEntity(data)
+        return this.repo.update(id, product)
+    }
+    delete(id: string): Promise<Product> {
+        return this.repo.delete(id)
+    }
 }

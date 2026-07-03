@@ -17,3 +17,14 @@ productsRoutes.post('/', zValidator('json', productRequestSchema), async (c) => 
     const dto = c.req.valid('json')
     return c.json(await service.create(dto))
 })
+
+productsRoutes.put('/:id', zValidator('json', productRequestSchema), async (c) => {
+    const dto = c.req.valid('json')
+    const id = c.req.param('id')
+    return c.json(await service.update(id, dto))
+})
+
+productsRoutes.delete('/:id', async (c) => {
+    const id = c.req.param('id')
+    return c.json(await service.delete(id))
+})

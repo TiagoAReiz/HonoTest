@@ -15,4 +15,17 @@ export class ProductRepo implements IProductRepo {
         const rows = await prisma.product.findMany()
         return rows.map(ProductMap.toDomain)
     }
+
+    async update(id: string, product: Product): Promise<Product> {
+        const updated = await prisma.product.update({
+            where: { id },
+            data: ProductMap.toPersistence(product),
+        })
+        return ProductMap.toDomain(updated)
+    }
+
+    async delete(id: string): Promise<Product> {
+        const deleted = await prisma.product.delete({ where: { id } })
+        return ProductMap.toDomain(deleted)
+    }
 }
