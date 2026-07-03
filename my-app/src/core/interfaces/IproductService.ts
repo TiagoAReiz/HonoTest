@@ -2,6 +2,6 @@ import type { ProductRequest } from "../../adapters/controllers/dtos/productReq.
 import type { Product } from "../entities/productEntity.js";
 
 export interface IProductService {
-    teste(data: ProductRequest): Product
-
+    getAll(): Promise<Product[]>
+    create(data: ProductRequest): Promise<Product>
 }
